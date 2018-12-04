@@ -7,18 +7,6 @@ from itertools import product
 from pathlib import Path
 
 
-def parse(line):
-    id, params = line[1:].split(' @ ')
-    coords, size = params.split(': ')
-    x, y = map(int, coords.split(','))
-    w, h = map(int, size.split('x'))
-    pixels = list(product(
-        range(x + 1, x + w + 1),
-        range(y + 1, y + h + 1),
-    ))
-    return id, pixels
-
-
 def solve_a(lines):
     fabric = defaultdict(int)
     for line in lines:
@@ -42,6 +30,17 @@ def solve_b(lines):
                 break
         else:
             return id
+
+
+def parse(line):
+    id, params = line[1:].split(' @ ')
+    coords, size = params.split(': ')
+    x, y = map(int, coords.split(','))
+    w, h = map(int, size.split('x'))
+    return id, product(
+        range(x + 1, x + w + 1),
+        range(y + 1, y + h + 1),
+    )
 
 
 if __name__ == '__main__':

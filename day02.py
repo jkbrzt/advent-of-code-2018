@@ -8,8 +8,7 @@ from pathlib import Path
 
 
 def solve_a(codes):
-    pairs = 0
-    triplets = 0
+    pairs = triplets = 0
     for code in codes:
         occurrences = Counter(code).values()
         pairs += any(count == 2 for count in occurrences)
